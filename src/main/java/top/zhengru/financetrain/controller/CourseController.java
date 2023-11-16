@@ -1,13 +1,18 @@
 package top.zhengru.financetrain.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.zhengru.financetrain.base.PageResult;
 import top.zhengru.financetrain.base.ResponseResult;
+import top.zhengru.financetrain.entity.CourseInfo;
 import top.zhengru.financetrain.param.CourseParam;
 import top.zhengru.financetrain.service.CourseInfoService;
+import top.zhengru.financetrain.service.CourseTypeService;
+
+import java.util.List;
 
 /**
  * @Author: dongzhengru
