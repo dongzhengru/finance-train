@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.zhengru.financetrain.mapper.CourseInfoMapper">
+
+    <resultMap id="BaseResultMap" type="top.zhengru.financetrain.entity.CourseInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+            <result property="coverUrl" column="cover_url" jdbcType="VARCHAR"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="intro" column="intro" jdbcType="VARCHAR"/>
+            <result property="videoUrl" column="video_url" jdbcType="VARCHAR"/>
+            <result property="level" column="level" jdbcType="VARCHAR"/>
+            <result property="userNumber" column="user_number" jdbcType="VARCHAR"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,type_id,cover_url,
+        title,intro,video_url,
+        level,user_number,create_by,
+        create_time,is_deleted
+    </sql>
+    <select id="getCourse" resultType="top.zhengru.financetrain.vo.CourseInfoVO">
+        select ci.id, ci.type_id, ci.cover_url, ci.title, ci.intro, ci.video_url, ci.level, ci.user_number, ci.create_by, ci.create_time, ct.type_name
+        from finance_train.course_info ci, finance_train.course_type ct
+        where ci.type_id = ct.id and ci.is_deleted = 0 and ct.is_deleted = 0
+        <if test="courseTypeId != null and courseTypeId != ''">and ci.type_id = #{courseTypeId}</if>
+        <if test="courseName != null and courseName != ''">and ci.title like concat('%', #{courseName} ,'%') </if>
+    </select>
+</mapper>
