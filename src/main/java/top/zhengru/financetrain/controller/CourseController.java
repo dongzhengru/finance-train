@@ -1,10 +1,7 @@
 package top.zhengru.financetrain.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.zhengru.financetrain.base.PageResult;
 import top.zhengru.financetrain.base.ResponseResult;
 import top.zhengru.financetrain.entity.CourseInfo;
@@ -33,5 +30,15 @@ public class CourseController {
     @PostMapping("/getCourse")
     public ResponseResult<PageResult> getCourse(@RequestBody CourseParam courseParam) {
         return courseInfoService.getCourse(courseParam);
+    }
+
+    /**
+     * 获取课程
+     * @param id
+     * @return
+     */
+    @PostMapping("/getCourseById/{id}")
+    public ResponseResult<CourseInfo> getCourseById(@PathVariable Integer id) {
+        return courseInfoService.getCourseById(id);
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.zhengru.financetrain.mapper.PhotoMapper">
+
+    <resultMap id="BaseResultMap" type="top.zhengru.financetrain.entity.Photo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="photoUrl" column="photo_url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,photo_url
+    </sql>
+    <select id="selectAll" resultType="top.zhengru.financetrain.entity.Photo">
+        select * from photo;
+    </select>
+</mapper>

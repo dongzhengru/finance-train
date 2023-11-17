@@ -19,4 +19,6 @@ public interface CourseInfoService extends IService<CourseInfo> {
      * @return
      */
     ResponseResult<PageResult> getCourse(CourseParam courseParam);
+
+    ResponseResult<CourseInfo> getCourseById(Integer id);
 }

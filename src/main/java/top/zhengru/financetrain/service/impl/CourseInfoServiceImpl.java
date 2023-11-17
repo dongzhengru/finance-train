@@ -45,6 +45,18 @@ public class CourseInfoServiceImpl extends ServiceImpl<CourseInfoMapper, CourseI
         courseInfoVOList = courseInfoMapper.getCourse(courseParam);
         return new ResponseResult<>(200, new PageResult(courseInfoVOList.getTotal(), courseInfoVOList));
     }
+
+    /**
+     * 获取单个课程
+     * @param id
+     * @return
+     */
+    @Override
+    public ResponseResult<CourseInfo> getCourseById(Integer id) {
+        CourseInfo courseInfo=new CourseInfo();
+        courseInfo=courseInfoMapper.selectById(id);
+        return new ResponseResult<>(200,courseInfo);
+    }
 }
 
 
