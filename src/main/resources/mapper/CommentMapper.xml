@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.zhengru.financetrain.mapper.CommentMapper">
+
+    <resultMap id="BaseResultMap" type="top.zhengru.financetrain.entity.Comment">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="foreignId" column="foreign_id" jdbcType="INTEGER"/>
+            <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+            <result property="target" column="target" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,content,username,
+        user_id,foreign_id,parent_id,
+        target,create_time,is_deleted
+    </sql>
+    <insert id="addComment">
+        insert into finance_train.comment (content, username, user_id, foreign_id, parent_id, target, create_time)
+        values (#{content}, #{username}, #{userId}, #{foreignId}, #{parentId}, #{target},#{createTime});
+    </insert>
+    <select id="findAllByForeignId" resultType="top.zhengru.financetrain.entity.Comment">
+        select id, content, username, user_id, foreign_id, parent_id, target, create_time
+        from finance_train.comment
+        where foreign_id = #{foreignId}
+    </select>
+</mapper>
